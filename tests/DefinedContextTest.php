@@ -12,14 +12,14 @@ class DefinedContextTest extends BaseTest
 {
     use ContextFixturesTrait;
 
-    private const _CONTEXT_NAME = 'test';
+    private const CONTEXT_NAME = 'test';
 
 
     public function testAccessContext()
     {
         $requestMetadata = $this->createRequestMetadataWithContext();
         $data = $this->getContextData();
-        $context = $requestMetadata->getContext(self::_CONTEXT_NAME);
+        $context = $requestMetadata->getContext(self::CONTEXT_NAME);
         $this->assertEquals($data['count'], $context->getProperty('count'));
         $this->assertEquals($data['items'], $context->getProperty('items'));
     }
@@ -45,16 +45,16 @@ class DefinedContextTest extends BaseTest
     {
         $requestMetadata = $this->createRequestMetadataWithContext();
         $this->expectException(OverwritingContextException::class);
-        $requestMetadata->setContext(self::_CONTEXT_NAME, new Context(['test' => 'asd']));
+        $requestMetadata->setContext(self::CONTEXT_NAME, new Context(['test' => 'asd']));
     }
 
 
     public function testReset()
     {
         $requestMetadata = $this->createRequestMetadataWithContext();
-        $requestMetadata->resetContext(self::_CONTEXT_NAME);
+        $requestMetadata->resetContext(self::CONTEXT_NAME);
 
-        $context = $requestMetadata->getContext(self::_CONTEXT_NAME);
+        $context = $requestMetadata->getContext(self::CONTEXT_NAME);
         $this->assertEmpty($context->getData());
         $this->assertNull($context->getProperty('count'));
     }
@@ -64,9 +64,9 @@ class DefinedContextTest extends BaseTest
     {
         $requestMetadata = new RequestMetadata();
         $factory = new ContextFactory();
-        $requestMetadata->setContextPacker(self::_CONTEXT_NAME, $factory->createPacker());
+        $requestMetadata->setContextPacker(self::CONTEXT_NAME, $factory->createPacker());
         $data = $this->getContextData();
-        $requestMetadata->setContext(self::_CONTEXT_NAME, $factory->createContext($data));
+        $requestMetadata->setContext(self::CONTEXT_NAME, $factory->createContext($data));
         return $requestMetadata;
     }
 }
