@@ -15,7 +15,7 @@ class DefinedContextTest extends BaseTest
     private const CONTEXT_NAME = 'test';
 
 
-    public function testAccessContext()
+    public function testContextAccess()
     {
         $requestMetadata = $this->createRequestMetadataWithContext();
         $data = $this->getContextData();
