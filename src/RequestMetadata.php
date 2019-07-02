@@ -81,7 +81,7 @@ class RequestMetadata
     public function getLoggableAttributes(array $excludeAttributes = []): array
     {
         $attributes = $this->getPlainAttributes();
-        $excludeAttributes = empty($excludeAttributes) ? self::DEFAULT_LOG_EXCLUDED_ATTR : $excludeAttributes;
+        $excludeAttributes = array_merge($excludeAttributes, self::DEFAULT_LOG_EXCLUDED_ATTR);
         foreach ($excludeAttributes as $attribute) {
             if (isset($attributes[$attribute])) {
                 unset($attributes[$attribute]);
