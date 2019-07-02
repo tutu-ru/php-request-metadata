@@ -14,6 +14,10 @@ class RequestMetadata
     public const ATTR_CURRENCY = 'currency';
     public const ATTR_JWT = 'jwt';
 
+    private const DEFAULT_LOG_EXCLUDED_ATTR = [
+        self::ATTR_JWT,
+    ];
+    
     /** @var PlainHolder */
     private $plainHolder;
 
@@ -72,6 +76,19 @@ class RequestMetadata
         }
 
         return $result;
+    }
+    
+    public function getLoggableAttributes(array $excludeAttributes = []): array
+    {
+        $attributes = $this->getPlainAttributes();
+        $excludeAttributes = array_merge($excludeAttributes, self::DEFAULT_LOG_EXCLUDED_ATTR);
+        foreach ($excludeAttributes as $attribute) {
+            if (isset($attributes[$attribute])) {
+                unset($attributes[$attribute]);
+            }
+        }
+        
+        return $attributes;
     }
 
 
