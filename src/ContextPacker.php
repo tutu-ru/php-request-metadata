@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace TutuRu\RequestMetadata;
 
-use TutuRu\RequestMetadata\Exception\RequestMetadataException;
+use TutuRu\RequestMetadata\Exception\JsonPackException;
 
 class ContextPacker
 {
@@ -16,7 +16,7 @@ class ContextPacker
     {
         $packed = json_encode($context);
         if (json_last_error()) {
-            throw new RequestMetadataException(sprintf('Unable to encode context data (json error %s)', json_last_error_msg()));
+            throw new JsonPackException(sprintf('Unable to encode context data (json error %s)', json_last_error_msg()));
         }
         return $packed;
     }
