@@ -7,8 +7,6 @@ use TutuRu\RequestMetadata\Context;
 use TutuRu\RequestMetadata\ContextPacker;
 use TutuRu\RequestMetadata\Exception\JsonPackException;
 use TutuRu\RequestMetadata\Exception\OverwritingContextException;
-use TutuRu\RequestMetadata\Exception\OverwritingGottenContextException;
-use TutuRu\RequestMetadata\Exception\RequestMetadataException;
 use TutuRu\RequestMetadata\Exception\UndefinedContextPackerException;
 use TutuRu\RequestMetadata\RequestMetadata;
 
