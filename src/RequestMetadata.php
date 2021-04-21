@@ -13,9 +13,11 @@ class RequestMetadata
     public const ATTR_LOCALIZATION = 'localization';
     public const ATTR_CURRENCY = 'currency';
     public const ATTR_JWT = 'jwt';
+    public const ATTR_TUTUID_JWT = 'tutuid_jwt';
 
     private const DEFAULT_LOG_EXCLUDED_ATTR = [
         self::ATTR_JWT,
+        self::ATTR_TUTUID_JWT,
     ];
     
     /** @var PlainHolder */
